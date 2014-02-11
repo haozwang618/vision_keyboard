@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KeyboardTypeDetectionUsingCamera/ViewController.mm"
+            timestampString = "413688505.350227"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController viewDidLoad]"
+                  moduleName = "KeyboardTypeDetectionUsingCamera"
+                  urlString = "file://localhost/Users/haozwang618/Documents/KeyboardCamera/KeyboardTypeDetectionUsingCamera/KeyboardTypeDetectionUsingCamera/ViewController.mm"
+                  timestampString = "413685491.43087"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController viewDidLoad]"
+                  moduleName = "KeyboardTypeDetectionUsingCamera"
+                  urlString = "file://localhost/Users/haozwang618/Documents/KeyboardCamera/KeyboardTypeDetectionUsingCamera/KeyboardTypeDetectionUsingCamera/ViewController.mm"
+                  timestampString = "413685491.431432"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "722">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController viewDidLoad]"
+                  moduleName = "KeyboardTypeDetectionUsingCamera"
+                  urlString = "file://localhost/Users/haozwang618/Documents/KeyboardCamera/KeyboardTypeDetectionUsingCamera/KeyboardTypeDetectionUsingCamera/ViewController.mm"
+                  timestampString = "413685491.431837"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "758">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController viewDidLoad]"
+                  moduleName = "KeyboardTypeDetectionUsingCamera"
+                  urlString = "file://localhost/Users/haozwang618/Documents/KeyboardCamera/KeyboardTypeDetectionUsingCamera/KeyboardTypeDetectionUsingCamera/ViewController.mm"
+                  timestampString = "413685491.432236"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "818">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
