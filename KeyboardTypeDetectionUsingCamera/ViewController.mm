@@ -14,10 +14,12 @@
 @end
 
 @implementation ViewController
-@synthesize imageFeed, cv_camera, noseDetect;
+@synthesize imageFeed, cv_camera, noseDetect, typedText;
 
 NSString* const noseCascadeFilename=@"haarcascade_mcs_nose.xml";
 const int HaarOptions = CV_HAAR_FIND_BIGGEST_OBJECT;
+int counter=0;
+NSMutableString *previous;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -26,6 +28,9 @@ const int HaarOptions = CV_HAAR_FIND_BIGGEST_OBJECT;
     
     
     //[self initializeCamera];
+    [UIApplication sharedApplication].idleTimerDisabled=YES;
+    previous =[[NSMutableString alloc] initWithFormat:@""];
+    [typedText setText:@""];
     cv_camera = [[CvVideoCamera alloc] initWithParentView:imageFeed];
 
     cv_camera.defaultAVCaptureSessionPreset=AVCaptureSessionPreset352x288;
@@ -155,6 +160,25 @@ const int HaarOptions = CV_HAAR_FIND_BIGGEST_OBJECT;
             if (cv::norm(noseCenter[i] - midTextOrg) < 17)
             {
                 color = cvScalar(0,0,255,255);
+                //start typing
+                if([letter isEqualToString:previous])
+                {
+                    counter = counter +1;
+                }
+                else
+                {
+                    previous=[NSMutableString stringWithFormat:@"%@",letter];
+                    counter =0;
+                }
+                if (counter > 30)
+                {
+                    //previous=[NSMutableString stringWithFormat:@"%@%@",previous,letter];
+                    
+                    [self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@%@",[typedText text],previous] waitUntilDone:YES];
+                    //[typedText setText:[NSMutableString stringWithFormat:@"%@%@",[typedText text],previous]];
+                    counter =0;
+                    NSLog([NSMutableString stringWithFormat:@"this label string is %@",[typedText text]]);
+                }
             }
         }
         
