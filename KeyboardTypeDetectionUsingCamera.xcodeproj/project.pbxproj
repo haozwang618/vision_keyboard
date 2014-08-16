@@ -23,7 +23,6 @@
 		AD1CBEB118A6B83100556A48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD1CBEAF18A6B83100556A48 /* InfoPlist.strings */; };
 		AD1CBEB318A6B83100556A48 /* KeyboardTypeDetectionUsingCameraTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CBEB218A6B83100556A48 /* KeyboardTypeDetectionUsingCameraTests.m */; };
 		AD1CBEBD18A6B94200556A48 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1CBEBC18A6B94200556A48 /* AVFoundation.framework */; };
-		AD1CBEBF18A7005600556A48 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1CBEBE18A7004A00556A48 /* opencv2.framework */; };
 		AD1CBEC518A70DF300556A48 /* haarcascade_mcs_righteye.xml in Resources */ = {isa = PBXBuildFile; fileRef = AD1CBEC118A70DF300556A48 /* haarcascade_mcs_righteye.xml */; };
 		AD1CBEC618A70DF300556A48 /* haarcascade_mcs_mouth.xml in Resources */ = {isa = PBXBuildFile; fileRef = AD1CBEC218A70DF300556A48 /* haarcascade_mcs_mouth.xml */; };
 		AD1CBEC718A70DF300556A48 /* haarcascade_mcs_lefteye.xml in Resources */ = {isa = PBXBuildFile; fileRef = AD1CBEC318A70DF300556A48 /* haarcascade_mcs_lefteye.xml */; };
@@ -33,6 +32,9 @@
 		AD1CBED018A847F900556A48 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1CBECB18A847F900556A48 /* CoreImage.framework */; };
 		AD1CBED118A847F900556A48 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1CBECC18A847F900556A48 /* CoreMedia.framework */; };
 		AD1CBED218A847F900556A48 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1CBECD18A847F900556A48 /* QuartzCore.framework */; };
+		ADB33B6E190A195A0043BA40 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB33B6D190A195A0043BA40 /* opencv2.framework */; };
+		ADB33B74190B0D0D0043BA40 /* haarcascade_mcs_eyepair_big.xml in Resources */ = {isa = PBXBuildFile; fileRef = ADB33B73190B0D0D0043BA40 /* haarcascade_mcs_eyepair_big.xml */; };
+		ADB33B76191E74E40043BA40 /* haarcascade_mcs_eyepair_small.xml in Resources */ = {isa = PBXBuildFile; fileRef = ADB33B75191E74E40043BA40 /* haarcascade_mcs_eyepair_small.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD0A4EB7190A138500DE2BB8 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = System/Library/Frameworks/opencv2.framework; sourceTree = SDKROOT; };
 		AD1CBE8118A6B83000556A48 /* KeyboardTypeDetectionUsingCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyboardTypeDetectionUsingCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1CBE8418A6B83000556A48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AD1CBE8618A6B83000556A48 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,7 +70,6 @@
 		AD1CBEB018A6B83100556A48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AD1CBEB218A6B83100556A48 /* KeyboardTypeDetectionUsingCameraTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardTypeDetectionUsingCameraTests.m; sourceTree = "<group>"; };
 		AD1CBEBC18A6B94200556A48 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		AD1CBEBE18A7004A00556A48 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = Library/Frameworks/opencv2.framework; sourceTree = DEVELOPER_DIR; };
 		AD1CBEC118A70DF300556A48 /* haarcascade_mcs_righteye.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_mcs_righteye.xml; sourceTree = "<group>"; };
 		AD1CBEC218A70DF300556A48 /* haarcascade_mcs_mouth.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_mcs_mouth.xml; sourceTree = "<group>"; };
 		AD1CBEC318A70DF300556A48 /* haarcascade_mcs_lefteye.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_mcs_lefteye.xml; sourceTree = "<group>"; };
@@ -77,6 +79,9 @@
 		AD1CBECB18A847F900556A48 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		AD1CBECC18A847F900556A48 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		AD1CBECD18A847F900556A48 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		ADB33B6D190A195A0043BA40 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../3rdParty_IOS_Framework/opencv2.framework; sourceTree = "<group>"; };
+		ADB33B73190B0D0D0043BA40 /* haarcascade_mcs_eyepair_big.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_mcs_eyepair_big.xml; sourceTree = "<group>"; };
+		ADB33B75191E74E40043BA40 /* haarcascade_mcs_eyepair_small.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_mcs_eyepair_small.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,12 +89,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADB33B6E190A195A0043BA40 /* opencv2.framework in Frameworks */,
 				AD1CBECE18A847F900556A48 /* Accelerate.framework in Frameworks */,
 				AD1CBECF18A847F900556A48 /* AssetsLibrary.framework in Frameworks */,
 				AD1CBED018A847F900556A48 /* CoreImage.framework in Frameworks */,
 				AD1CBED118A847F900556A48 /* CoreMedia.framework in Frameworks */,
 				AD1CBED218A847F900556A48 /* QuartzCore.framework in Frameworks */,
-				AD1CBEBF18A7005600556A48 /* opencv2.framework in Frameworks */,
 				AD1CBEBD18A6B94200556A48 /* AVFoundation.framework in Frameworks */,
 				AD1CBE8718A6B83000556A48 /* CoreGraphics.framework in Frameworks */,
 				AD1CBE8918A6B83000556A48 /* UIKit.framework in Frameworks */,
@@ -132,12 +137,13 @@
 		AD1CBE8318A6B83000556A48 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADB33B6D190A195A0043BA40 /* opencv2.framework */,
+				AD0A4EB7190A138500DE2BB8 /* opencv2.framework */,
 				AD1CBEC918A847F800556A48 /* Accelerate.framework */,
 				AD1CBECA18A847F900556A48 /* AssetsLibrary.framework */,
 				AD1CBECB18A847F900556A48 /* CoreImage.framework */,
 				AD1CBECC18A847F900556A48 /* CoreMedia.framework */,
 				AD1CBECD18A847F900556A48 /* QuartzCore.framework */,
-				AD1CBEBE18A7004A00556A48 /* opencv2.framework */,
 				AD1CBEBC18A6B94200556A48 /* AVFoundation.framework */,
 				AD1CBE8418A6B83000556A48 /* Foundation.framework */,
 				AD1CBE8618A6B83000556A48 /* CoreGraphics.framework */,
@@ -195,6 +201,8 @@
 		AD1CBEC018A70D8600556A48 /* HAAR_CASCADE_XML */ = {
 			isa = PBXGroup;
 			children = (
+				ADB33B75191E74E40043BA40 /* haarcascade_mcs_eyepair_small.xml */,
+				ADB33B73190B0D0D0043BA40 /* haarcascade_mcs_eyepair_big.xml */,
 				AD1CBEC118A70DF300556A48 /* haarcascade_mcs_righteye.xml */,
 				AD1CBEC218A70DF300556A48 /* haarcascade_mcs_mouth.xml */,
 				AD1CBEC318A70DF300556A48 /* haarcascade_mcs_lefteye.xml */,
@@ -247,7 +255,7 @@
 		AD1CBE7918A6B82F00556A48 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Haozhu Wang";
 				TargetAttributes = {
 					AD1CBEA418A6B83100556A48 = {
@@ -279,9 +287,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADB33B74190B0D0D0043BA40 /* haarcascade_mcs_eyepair_big.xml in Resources */,
 				AD1CBEC618A70DF300556A48 /* haarcascade_mcs_mouth.xml in Resources */,
 				AD1CBEC518A70DF300556A48 /* haarcascade_mcs_righteye.xml in Resources */,
 				AD1CBE9B18A6B83000556A48 /* Main_iPad.storyboard in Resources */,
+				ADB33B76191E74E40043BA40 /* haarcascade_mcs_eyepair_small.xml in Resources */,
 				AD1CBEA018A6B83000556A48 /* Images.xcassets in Resources */,
 				AD1CBE9818A6B83000556A48 /* Main_iPhone.storyboard in Resources */,
 				AD1CBEC818A70DF300556A48 /* haarcascade_mcs_nose.xml in Resources */,
@@ -368,8 +378,7 @@
 		AD1CBEB418A6B83100556A48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -409,8 +418,7 @@
 		AD1CBEB518A6B83100556A48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -449,6 +457,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					/Users/haozwang618/Downloads,
+					/Users/haozwang618/Documents/3rdParty_IOS_Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KeyboardTypeDetectionUsingCamera/KeyboardTypeDetectionUsingCamera-Prefix.pch";
@@ -466,6 +476,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					/Users/haozwang618/Downloads,
+					/Users/haozwang618/Documents/3rdParty_IOS_Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KeyboardTypeDetectionUsingCamera/KeyboardTypeDetectionUsingCamera-Prefix.pch";
@@ -478,7 +490,6 @@
 		AD1CBEBA18A6B83100556A48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KeyboardTypeDetectionUsingCamera.app/KeyboardTypeDetectionUsingCamera";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -501,7 +512,6 @@
 		AD1CBEBB18A6B83100556A48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KeyboardTypeDetectionUsingCamera.app/KeyboardTypeDetectionUsingCamera";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -536,6 +546,7 @@
 				AD1CBEB818A6B83100556A48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD1CBEB918A6B83100556A48 /* Build configuration list for PBXNativeTarget "KeyboardTypeDetectionUsingCameraTests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +555,7 @@
 				AD1CBEBB18A6B83100556A48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -16,6 +16,10 @@ using namespace cv;
 @property(strong, retain)CvVideoCamera * cv_camera;
 @property (strong, nonatomic) IBOutlet UILabel *typedText;
 @property(nonatomic) CascadeClassifier noseDetect;
+@property(nonatomic) CascadeClassifier leftEyeDetect;
+@property(nonatomic) CascadeClassifier rightEyeDetect;
+@property(nonatomic) CascadeClassifier pairEyesDetect;
+@property(nonatomic) CascadeClassifier pairEyesDetectSmall;
 //@property(nonatomic) CascadeClassifier mouthDetect;
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageFeed;
