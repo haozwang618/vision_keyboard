@@ -15,7 +15,7 @@
 @end
 
 @implementation ViewController
-@synthesize imageFeed, cv_camera, noseDetect, typedText, rightEyeDetect, leftEyeDetect, pairEyesDetect, pairEyesDetectSmall;
+@synthesize imageFeed, cv_camera, noseDetect, typedText, rightEyeDetect, leftEyeDetect, pairEyesDetect, pairEyesDetectSmall, typedTextiPad, imageFeediPad, type, activityInd, padInd, phoneInd, suggestionTree, suggestionTreeSoFar;
 
 NSString* const noseCascadeFilename=@"haarcascade_mcs_nose.xml";
 NSString* const rightEyeCascadeFilename=@"haarcascade_mcs_righteye.xml";
@@ -76,53 +76,97 @@ int start_y;
 /////
 NSString * selected_str;
 bool type_letters=false;
+bool continue_letter = false;
+/////
+UIImageView *feed;
+////
+NSMutableArray* sugg;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     //Frontcamera = false;
+    
+    
+
+    if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        feed = imageFeediPad;
+        type = typedTextiPad;
+        activityInd = padInd;
+    }
+    else
+    {
+        feed= imageFeed;
+        type= typedText;
+        activityInd = phoneInd;
+        //cv_camera.defaultAVCaptureSessionPreset=AVCaptureSessionPreset352x288;
+    }
+
+    [activityInd setHidesWhenStopped:YES];
+    [activityInd startAnimating];
+    dispatch_queue_t lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    
+    
+    dispatch_async(lowQueue, ^{
+        suggestionTree = [[Tst alloc] initWithFile];
+        suggestionTreeSoFar = suggestionTree;
+        dispatch_async(mainQueue, ^{
+            
+            cv_camera = [[CvVideoCamera alloc] initWithParentView:feed];
+            
+            
+            cv_camera.defaultAVCaptureVideoOrientation=AVCaptureVideoOrientationPortrait;
+            cv_camera.grayscaleMode =NO;
+            cv_camera.delegate=self;
+            cv_camera.defaultAVCaptureDevicePosition= AVCaptureDevicePositionFront;
+            
+            cv_camera.defaultAVCaptureSessionPreset=AVCaptureSessionPreset640x480;
+            
+            //[self initializeCamera];
+            [UIApplication sharedApplication].idleTimerDisabled=YES;
+            previous =[[NSMutableString alloc] initWithFormat:@""];
+            [type setText:@"<"];
+            
+            
+            NSArray * noseFile = [noseCascadeFilename componentsSeparatedByString:@"."];
+            NSString* noseCascadePath = [[NSBundle mainBundle] pathForResource:noseFile[0] ofType:@"xml"];
+            noseDetect.load([noseCascadePath  UTF8String]);
+            
+            NSArray * rightEyeFile = [rightEyeCascadeFilename componentsSeparatedByString:@"."];
+            NSString* rightEyeCascadePath = [[NSBundle mainBundle] pathForResource:rightEyeFile[0] ofType:@"xml"];
+            rightEyeDetect.load([rightEyeCascadePath  UTF8String]);
+            
+            NSArray * leftEyeFile = [leftEyeCascadeFilename componentsSeparatedByString:@"."];
+            NSString* leftEyeCascadePath = [[NSBundle mainBundle] pathForResource:leftEyeFile[0] ofType:@"xml"];
+            leftEyeDetect.load([leftEyeCascadePath  UTF8String]);
+            
+            NSArray * pairEyesFile = [pairEyesCascadeFilename componentsSeparatedByString:@"."];
+            NSString* pairEyesCascadePath = [[NSBundle mainBundle] pathForResource:pairEyesFile[0] ofType:@"xml"];
+            pairEyesDetect.load([pairEyesCascadePath  UTF8String]);
+            
+            NSArray * pairEyesFileSmall = [pairEyesSmallCascadeFilename componentsSeparatedByString:@"."];
+            NSString* pairEyesSmallCascadePath = [[NSBundle mainBundle] pathForResource:pairEyesFileSmall[0] ofType:@"xml"];
+            pairEyesDetectSmall.load([pairEyesSmallCascadePath  UTF8String]);
+            
+            [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+            [[NSNotificationCenter defaultCenter]
+             addObserver:self selector:@selector(orientationChanged:)
+             name:UIDeviceOrientationDidChangeNotification
+             object:[UIDevice currentDevice]];
+            
+            [cv_camera start];
+            [activityInd stopAnimating];
+            
+        });
+    });
 
     
-    //[self initializeCamera];
-    [UIApplication sharedApplication].idleTimerDisabled=YES;
-    previous =[[NSMutableString alloc] initWithFormat:@""];
-    [typedText setText:@"<"];
-    cv_camera = [[CvVideoCamera alloc] initWithParentView:imageFeed];
 
-    cv_camera.defaultAVCaptureSessionPreset=AVCaptureSessionPreset352x288;
-    cv_camera.defaultAVCaptureVideoOrientation=AVCaptureVideoOrientationPortrait;
-    cv_camera.grayscaleMode =NO;
     
-    cv_camera.delegate=self;
-    cv_camera.defaultAVCaptureDevicePosition= AVCaptureDevicePositionFront;
     
-    NSArray * noseFile = [noseCascadeFilename componentsSeparatedByString:@"."];
-    NSString* noseCascadePath = [[NSBundle mainBundle] pathForResource:noseFile[0] ofType:@"xml"];
-    noseDetect.load([noseCascadePath  UTF8String]);
-    
-    NSArray * rightEyeFile = [rightEyeCascadeFilename componentsSeparatedByString:@"."];
-    NSString* rightEyeCascadePath = [[NSBundle mainBundle] pathForResource:rightEyeFile[0] ofType:@"xml"];
-    rightEyeDetect.load([rightEyeCascadePath  UTF8String]);
-    
-    NSArray * leftEyeFile = [leftEyeCascadeFilename componentsSeparatedByString:@"."];
-    NSString* leftEyeCascadePath = [[NSBundle mainBundle] pathForResource:leftEyeFile[0] ofType:@"xml"];
-    leftEyeDetect.load([leftEyeCascadePath  UTF8String]);
-    
-    NSArray * pairEyesFile = [pairEyesCascadeFilename componentsSeparatedByString:@"."];
-    NSString* pairEyesCascadePath = [[NSBundle mainBundle] pathForResource:pairEyesFile[0] ofType:@"xml"];
-    pairEyesDetect.load([pairEyesCascadePath  UTF8String]);
-    
-    NSArray * pairEyesFileSmall = [pairEyesSmallCascadeFilename componentsSeparatedByString:@"."];
-    NSString* pairEyesSmallCascadePath = [[NSBundle mainBundle] pathForResource:pairEyesFileSmall[0] ofType:@"xml"];
-    pairEyesDetectSmall.load([pairEyesSmallCascadePath  UTF8String]);
-    
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self selector:@selector(orientationChanged:)
-     name:UIDeviceOrientationDidChangeNotification
-     object:[UIDevice currentDevice]];
-    
-    [cv_camera start];
 }
 
 - (void)didReceiveMemoryWarning
@@ -176,6 +220,58 @@ bool type_letters=false;
     [cv_camera start];
 }
 
+
+-(void) typeSuggest: (Mat&) image center:(std::vector<cv::Point>) eyeCenter
+{
+    NSString * text1, *text2, *text3;
+    
+    int cycle =0;
+    for(int i =0; i<[sugg count];i++)
+    {
+        Tst * tempObj = [sugg objectAtIndex:i];
+        if (i%3==0) {
+            switch (cycle)
+            {
+                case 0:
+                    text1 = [NSString stringWithFormat:@"%@", tempObj.letter];
+                    break;
+                case 1:
+                    text2 = [NSString stringWithFormat:@"%@", tempObj.letter];
+                    break;
+                case 2:
+                    text3 = [NSString stringWithFormat:@"%@", tempObj.letter];
+                    break;
+
+                default:
+                    break;
+            }
+            cycle++;
+        }
+        else
+        {
+            switch (cycle-1)
+            {
+                case 0:
+                    text1 = [NSString stringWithFormat:@"%@,%@", text1, tempObj.letter];
+                    break;
+                case 1:
+                    text2 = [NSString stringWithFormat:@"%@,%@", text2, tempObj.letter];
+                    break;
+                case 2:
+                    text3 = [NSString stringWithFormat:@"%@,%@", text3, tempObj.letter];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+
+    }
+    
+    [self partitionQuadLvl1:image center:eyeCenter text1:text1 text2:text2 text3:text3 text4:@"Sp,De"];
+    //[self partitionQuadLvl1:image center:eyeCenter text1:[NSString stringWithFormat:@"%@,%@",[[sugg objectAtIndex:0] letter], [[sugg objectAtIndex:1] letter]] text2:nil text3:nil text4:@"Sp,De"];
+}
+
 #ifdef __cplusplus
 - (void)processImage:(Mat&)image
 {
@@ -217,6 +313,43 @@ bool type_letters=false;
             else if(letter_mode == 4)
             {
                 [self partitionQuadLvl1:image center:pairEyesCenter text1:@"V,W" text2:@"X,Y" text3:@"Z,Sp" text4:@"De"];
+            }
+            else if(letter_mode == 5)
+            {
+                if(continue_letter)
+                {
+                    [self typeSuggest:image center:pairEyesCenter];
+                }
+                else
+                {
+                    if ([[type text] length] < 2) {
+                        letter_mode =0;
+                    }
+                    else
+                    {
+                        NSString *letter =[NSString stringWithFormat:@"%c",[[type text] characterAtIndex:[[type text] length] -1]];
+                    
+                        if ([letter isEqual:@" "]) {
+                            letter_mode=0;
+                            suggestionTreeSoFar = suggestionTree;
+                        }
+                        else
+                        {
+                    
+                            sugg = [suggestionTreeSoFar suggest:[letter lowercaseString]];
+                            suggestionTreeSoFar = [suggestionTreeSoFar searchFor:[letter lowercaseString]];
+                            if (sugg == nil) {
+                                letter_mode=0;
+                                suggestionTreeSoFar = suggestionTree;
+                            }
+                            else
+                            {
+                                continue_letter = true;
+                                [self typeSuggest:image center:pairEyesCenter];
+                            }
+                        }
+                    }
+                }
             }
         }
    /* }
@@ -278,7 +411,7 @@ bool type_letters=false;
     bool next = false;
     cv::Scalar color = cvScalar(255,255,255);
     
-    cv::Point centerScreen(imageFeed.frame.size.width/2-15, imageFeed.frame.size.height/2+45);
+    cv::Point centerScreen(feed.frame.size.width/2-15, feed.frame.size.height/2+45);
         
     for (int i=0; i< centerInp.size(); ++i)
     {
@@ -313,7 +446,7 @@ bool type_letters=false;
     }
     if(state_count == 1)
     {
-        cv::Point leftScreen(imageFeed.frame.size.width/2-60, imageFeed.frame.size.height/2+45);
+        cv::Point leftScreen(feed.frame.size.width/2-60, feed.frame.size.height/2+45);
         cv::Scalar leftColor = cvScalar(255,255,255);
         cv::circle(img, leftScreen, 15, leftColor);
         
@@ -344,7 +477,7 @@ bool type_letters=false;
     }
     if((state_count == 2) && (frame_count == 20))
     {
-        cv::Point rightScreen(imageFeed.frame.size.width/2+30, imageFeed.frame.size.height/2+45);
+        cv::Point rightScreen(feed.frame.size.width/2+30, feed.frame.size.height/2+45);
         cv::Scalar rightColor = cvScalar(255,255,255);
         cv::circle(img, rightScreen, 15, rightColor);
         
@@ -373,7 +506,7 @@ bool type_letters=false;
     }
     if((state_count == 3) && (frame_count == 20))
     {
-        cv::Point topScreen(imageFeed.frame.size.width/2-15, imageFeed.frame.size.height/2-5);
+        cv::Point topScreen(feed.frame.size.width/2-15, feed.frame.size.height/2-5);
         cv::Scalar topColor = cvScalar(255,255,255);
         cv::circle(img, topScreen, 15, topColor);
         
@@ -402,7 +535,7 @@ bool type_letters=false;
     }
     if((state_count == 4) && (frame_count == 20))
     {
-        cv::Point downScreen(imageFeed.frame.size.width/2-15, imageFeed.frame.size.height/2+85);
+        cv::Point downScreen(feed.frame.size.width/2-15, feed.frame.size.height/2+85);
         cv::Scalar downColor = cvScalar(255,255,255);
         cv::circle(img, downScreen, 15, downColor);
         
@@ -536,26 +669,26 @@ bool type_letters=false;
                                 
                                     if(current<5)
                                     {
-                                        [self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@%@<",[[typedText text] substringToIndex:[[typedText text] length]-1],previous] waitUntilDone:YES];
+                                        [self.type performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@%@<",[[type text] substringToIndex:[[type text] length]-1],previous] waitUntilDone:YES];
                                     }
                                     else
                                     {
                                         if([previous isEqual:@"Sp"])
                                         {
-                                                [self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@ <",[[typedText text] substringToIndex:[[typedText text] length]-1]] waitUntilDone:YES];
+                                                [self.type performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@ <",[[type text] substringToIndex:[[type text] length]-1]] waitUntilDone:YES];
                                         }
                                         else if([previous isEqual:@"De"])
                                         {
-                                            [self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@<",[[typedText text] substringToIndex:[[typedText text] length]-2]] waitUntilDone:YES];
+                                            [self.type performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@<",[[type text] substringToIndex:[[type text] length]-2]] waitUntilDone:YES];
                                         }
                                     }
-                                //[typedText setText:[NSMutableString stringWithFormat:@"%@%@",[typedText text],previous]];
+                                //[type setText:[NSMutableString stringWithFormat:@"%@%@",[type text],previous]];
                                     counter =0;
                                     right_blink_counter = 0;
                                     calibrated = false;
                                     two_pupil_counter = 0;
                                 
-                                    NSLog([NSMutableString stringWithFormat:@"this label string is %@",[typedText text]]);
+                                    NSLog([NSMutableString stringWithFormat:@"this label string is %@",[type text]]);
                                 }
                             //}
 
@@ -749,16 +882,16 @@ bool type_letters=false;
     int col_start_offset=0;
     switch (quadNum) {
         case 2:
-                col_start_offset= imageFeed.frame.size.height/2 +20;
+                col_start_offset= image.rows/2 +20;
                 break;
         
         case 3:
-                row_start_offset = imageFeed.frame.size.width/2-15;
+                row_start_offset = image.cols/2-15;
                 break;
         
         case 4:
-                col_start_offset= imageFeed.frame.size.height/2 +20;
-                row_start_offset = imageFeed.frame.size.width/2-15;
+                col_start_offset= image.rows/2 +20;
+                row_start_offset = image.cols/2-15;
                 break;
     }
     
@@ -791,15 +924,17 @@ bool type_letters=false;
 
 -(int) partitionQuad: (Mat&) image center:(std::vector<cv::Point>) eyeCenter
 {
-    int half_width_point =imageFeed.frame.size.width/2-15;
-    int half_height_point = imageFeed.frame.size.height/2 +20;
+    int half_width_point =image.cols/2;
+    NSLog([NSString stringWithFormat:@"half way point is at %d", half_width_point]);
+    int half_height_point = image.rows/2;
+    NSLog([NSString stringWithFormat:@"half way height point is at %d", half_height_point]);
     cv::Point midpoint1(0, half_height_point);
-    cv::Point midpoint2(imageFeed.frame.size.width, half_height_point);
+    cv::Point midpoint2(image.rows, half_height_point);
     
     cv::Point midmidpoint(half_width_point, half_height_point);
     
     cv::Point midpoint3(half_width_point, 0);
-    cv::Point midpoint4(half_width_point, imageFeed.frame.size.height+30);
+    cv::Point midpoint4(half_width_point, image.rows);
     
     CvScalar color2 =cvScalar(255, 255, 255, 255);
     CvScalar color1 =cvScalar(0, 0, 255,255);
@@ -907,9 +1042,9 @@ bool type_letters=false;
     {
         int letter_s= [letter length]*20;
         cv::Scalar color =cvScalarAll(255);
-        cv::Point textOrg(imageFeed.frame.size.width/3+count*(letter_s+20)+letter_offset, imageFeed.frame.size.height/2+height_offset);
+        cv::Point textOrg(image.cols/2+count*(letter_s+20)+letter_offset, image.rows/2+height_offset);
         
-        cv::Point midTextOrg(imageFeed.frame.size.width/3+count*(letter_s+20)+letter_s/2+letter_offset, imageFeed.frame.size.height/2+height_offset-(letter_s+10)/2);
+        cv::Point midTextOrg(image.cols/2+count*(letter_s+20)+letter_s/2+letter_offset, image.rows/2+height_offset-(letter_s+10)/2);
         
         for (int i = 0; i < noseCenter.size(); i++)
         {
@@ -955,22 +1090,25 @@ bool type_letters=false;
                     
                     if([previous isEqualToString:@"Sp"])
                     {
-                        [self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@ ",[typedText text]]  waitUntilDone:YES];
+                        [self.type performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@ ",[type text]]  waitUntilDone:YES];
                     }
                     else if([previous isEqualToString:@"De"])
                     {
-                        [self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@",[[typedText text] substringToIndex:[[typedText text] length]-1]] waitUntilDone:YES];
+                        [self.type performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@",[[type text] substringToIndex:[[type text] length]-1]] waitUntilDone:YES];
                     }
                     else
                     {
-                        [self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@%@",[typedText text],previous] waitUntilDone:YES];
+                        [self.type performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@%@",[type text],previous] waitUntilDone:YES];
+                        type_letters = false;
+                        continue_letter=false;
+                        letter_mode = 5;
                     }
 
                     
-                    //[self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@%@",[typedText text],previous] waitUntilDone:YES];
-                    //[typedText setText:[NSMutableString stringWithFormat:@"%@%@",[typedText text],previous]];
+                    //[self.type performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@%@",[type text],previous] waitUntilDone:YES];
+                    //[type setText:[NSMutableString stringWithFormat:@"%@%@",[type text],previous]];
                     counter =0;
-                    NSLog([NSMutableString stringWithFormat:@"this label string is %@",[typedText text]]);
+                    NSLog([NSMutableString stringWithFormat:@"this label string is %@",[type text]]);
                 }
                 
                 
@@ -988,7 +1126,7 @@ bool type_letters=false;
         cv::putText(image, [letter UTF8String], textOrg, fontFace, fontScale, color, thickness,4);
         count++;
         /*
-        if (imageFeed.frame.size.width - (imageFeed.frame.size.width/3+count*letter_s) < 2*letter_s + imageFeed.frame.size.width/4)
+        if (feed.frame.size.width - (feed.frame.size.width/3+count*letter_s) < 2*letter_s + feed.frame.size.width/4)
         {
             count2++;
             count = 0;
@@ -1023,15 +1161,15 @@ bool type_letters=false;
                     //previous=[NSMutableString stringWithFormat:@"%@%@",previous,letter];
                     if([previous isEqualToString:@"Sp"])
                     {
-                         [self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@ ",[[typedText text] substringToIndex:[[typedText text] length]-1]] waitUntilDone:YES];
+                         [self.type performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@ ",[[type text] substringToIndex:[[type text] length]-1]] waitUntilDone:YES];
                     }
                     else if([previous isEqualToString:@"De"])
                     {
-                         [self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@",[[typedText text] substringToIndex:[[typedText text] length]-1]] waitUntilDone:YES];
+                         [self.type performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@",[[type text] substringToIndex:[[type text] length]-1]] waitUntilDone:YES];
                     }
                     else
                     {
-                        [self.typedText performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@%@",[typedText text],previous] waitUntilDone:YES];
+                        [self.type performSelectorOnMainThread : @selector(setText : ) withObject:[NSMutableString stringWithFormat:@"%@%@",[type text],previous] waitUntilDone:YES];
                     }
                     selectionFlag=false;
                     inter_frame=0;

@@ -15,7 +15,6 @@
 		AD1CBE9518A6B83000556A48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CBE9418A6B83000556A48 /* AppDelegate.m */; };
 		AD1CBE9818A6B83000556A48 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD1CBE9618A6B83000556A48 /* Main_iPhone.storyboard */; };
 		AD1CBE9B18A6B83000556A48 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD1CBE9918A6B83000556A48 /* Main_iPad.storyboard */; };
-		AD1CBE9E18A6B83000556A48 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD1CBE9D18A6B83000556A48 /* ViewController.mm */; };
 		AD1CBEA018A6B83000556A48 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD1CBE9F18A6B83000556A48 /* Images.xcassets */; };
 		AD1CBEA718A6B83100556A48 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1CBEA618A6B83100556A48 /* XCTest.framework */; };
 		AD1CBEA818A6B83100556A48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1CBE8418A6B83000556A48 /* Foundation.framework */; };
@@ -32,9 +31,12 @@
 		AD1CBED018A847F900556A48 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1CBECB18A847F900556A48 /* CoreImage.framework */; };
 		AD1CBED118A847F900556A48 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1CBECC18A847F900556A48 /* CoreMedia.framework */; };
 		AD1CBED218A847F900556A48 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1CBECD18A847F900556A48 /* QuartzCore.framework */; };
+		AD38AC3B1A1A63F8001D0981 /* wiktionary.txt in Resources */ = {isa = PBXBuildFile; fileRef = AD38AC3A1A1A63F8001D0981 /* wiktionary.txt */; };
+		AD38AC3E1A1A6769001D0981 /* Tst.m in Sources */ = {isa = PBXBuildFile; fileRef = AD38AC3D1A1A6769001D0981 /* Tst.m */; };
 		ADB33B6E190A195A0043BA40 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB33B6D190A195A0043BA40 /* opencv2.framework */; };
 		ADB33B74190B0D0D0043BA40 /* haarcascade_mcs_eyepair_big.xml in Resources */ = {isa = PBXBuildFile; fileRef = ADB33B73190B0D0D0043BA40 /* haarcascade_mcs_eyepair_big.xml */; };
 		ADB33B76191E74E40043BA40 /* haarcascade_mcs_eyepair_small.xml in Resources */ = {isa = PBXBuildFile; fileRef = ADB33B75191E74E40043BA40 /* haarcascade_mcs_eyepair_small.xml */; };
+		ADFF0BA31A16AC3E00181355 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = ADFF0BA11A16AC3E00181355 /* ViewController.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +63,6 @@
 		AD1CBE9418A6B83000556A48 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AD1CBE9718A6B83000556A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		AD1CBE9A18A6B83000556A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		AD1CBE9C18A6B83000556A48 /* ViewController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ViewController.hpp; sourceTree = "<group>"; };
-		AD1CBE9D18A6B83000556A48 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		AD1CBE9F18A6B83000556A48 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AD1CBEA518A6B83100556A48 /* KeyboardTypeDetectionUsingCameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeyboardTypeDetectionUsingCameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1CBEA618A6B83100556A48 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -79,9 +79,14 @@
 		AD1CBECB18A847F900556A48 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		AD1CBECC18A847F900556A48 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		AD1CBECD18A847F900556A48 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AD38AC3A1A1A63F8001D0981 /* wiktionary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wiktionary.txt; sourceTree = "<group>"; };
+		AD38AC3C1A1A6769001D0981 /* Tst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tst.h; sourceTree = "<group>"; };
+		AD38AC3D1A1A6769001D0981 /* Tst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tst.m; sourceTree = "<group>"; };
 		ADB33B6D190A195A0043BA40 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../3rdParty_IOS_Framework/opencv2.framework; sourceTree = "<group>"; };
 		ADB33B73190B0D0D0043BA40 /* haarcascade_mcs_eyepair_big.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_mcs_eyepair_big.xml; sourceTree = "<group>"; };
 		ADB33B75191E74E40043BA40 /* haarcascade_mcs_eyepair_small.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_mcs_eyepair_small.xml; sourceTree = "<group>"; };
+		ADFF0BA11A16AC3E00181355 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		ADFF0BA21A16AC3E00181355 /* ViewController.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 4; path = ViewController.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,8 +166,11 @@
 				AD1CBE9418A6B83000556A48 /* AppDelegate.m */,
 				AD1CBE9618A6B83000556A48 /* Main_iPhone.storyboard */,
 				AD1CBE9918A6B83000556A48 /* Main_iPad.storyboard */,
-				AD1CBE9C18A6B83000556A48 /* ViewController.hpp */,
-				AD1CBE9D18A6B83000556A48 /* ViewController.mm */,
+				ADFF0BA21A16AC3E00181355 /* ViewController.hpp */,
+				ADFF0BA11A16AC3E00181355 /* ViewController.mm */,
+				AD38AC3A1A1A63F8001D0981 /* wiktionary.txt */,
+				AD38AC3C1A1A6769001D0981 /* Tst.h */,
+				AD38AC3D1A1A6769001D0981 /* Tst.m */,
 				AD1CBE9F18A6B83000556A48 /* Images.xcassets */,
 				AD1CBE8B18A6B83000556A48 /* Supporting Files */,
 			);
@@ -258,6 +266,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Haozhu Wang";
 				TargetAttributes = {
+					AD1CBE8018A6B82F00556A48 = {
+						DevelopmentTeam = 8ESE36ZCB7;
+					};
 					AD1CBEA418A6B83100556A48 = {
 						TestTargetID = AD1CBE8018A6B82F00556A48;
 					};
@@ -289,6 +300,7 @@
 			files = (
 				ADB33B74190B0D0D0043BA40 /* haarcascade_mcs_eyepair_big.xml in Resources */,
 				AD1CBEC618A70DF300556A48 /* haarcascade_mcs_mouth.xml in Resources */,
+				AD38AC3B1A1A63F8001D0981 /* wiktionary.txt in Resources */,
 				AD1CBEC518A70DF300556A48 /* haarcascade_mcs_righteye.xml in Resources */,
 				AD1CBE9B18A6B83000556A48 /* Main_iPad.storyboard in Resources */,
 				ADB33B76191E74E40043BA40 /* haarcascade_mcs_eyepair_small.xml in Resources */,
@@ -315,9 +327,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD1CBE9E18A6B83000556A48 /* ViewController.mm in Sources */,
 				AD1CBE9518A6B83000556A48 /* AppDelegate.m in Sources */,
 				AD1CBE9118A6B83000556A48 /* main.m in Sources */,
+				ADFF0BA31A16AC3E00181355 /* ViewController.mm in Sources */,
+				AD38AC3E1A1A6769001D0981 /* Tst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,8 +404,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Haozhu Wang (T8AQKH6NPW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Haozhu Wang (T8AQKH6NPW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -408,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -431,8 +444,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Haozhu Wang (T8AQKH6NPW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Haozhu Wang (T8AQKH6NPW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -442,7 +455,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -454,6 +467,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -464,6 +479,7 @@
 				GCC_PREFIX_HEADER = "KeyboardTypeDetectionUsingCamera/KeyboardTypeDetectionUsingCamera-Prefix.pch";
 				INFOPLIST_FILE = "KeyboardTypeDetectionUsingCamera/KeyboardTypeDetectionUsingCamera-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -473,6 +489,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -483,6 +501,7 @@
 				GCC_PREFIX_HEADER = "KeyboardTypeDetectionUsingCamera/KeyboardTypeDetectionUsingCamera-Prefix.pch";
 				INFOPLIST_FILE = "KeyboardTypeDetectionUsingCamera/KeyboardTypeDetectionUsingCamera-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
